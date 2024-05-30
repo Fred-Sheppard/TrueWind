@@ -1,11 +1,11 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/fredsheppard/true_wind
+  repository: 708726711781.dkr.ecr.us-east-1.amazonaws.com/flask-app
   tag: latest
   pullPolicy: IfNotPresent
 
-port: 5000
+containerPort: 5000
 
 service:
   type: LoadBalancer

@@ -1,0 +1,16 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+To learn more about the release, try:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
+
+Welcome to the true wind API!
+
+Usage:
+```
+<address>/wind/?wind_speed=10&wind_angle=45&boat_speed=5
+```
+

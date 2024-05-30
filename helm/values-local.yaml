@@ -1,0 +1,26 @@
+replicaCount: 1
+
+image:
+  repository: docker.io/fredsheppard/true_wind
+  tag: stage
+  pullPolicy: IfNotPresent
+
+containerPort: 5000
+
+service:
+  type: LoadBalancer
+  port: 80
+
+resources: {}
+#  requests:
+#    cpu: "100m"
+#    memory: "100Mi"
+#  limits:
+#    cpu: "500m"
+#    memory: "1Gi"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
