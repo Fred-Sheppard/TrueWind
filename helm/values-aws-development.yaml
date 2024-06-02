@@ -4,7 +4,7 @@ debug: true
 
 image:
   repository: 708726711781.dkr.ecr.us-east-1.amazonaws.com/flask-app
-  tag: echo
+  tag: latest
   pullPolicy: Always
 
 containerPort: 5000
