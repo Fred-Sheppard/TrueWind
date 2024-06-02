@@ -1,1 +1,2 @@
-Currently, the normal dockerfile works, but the multi-stage only works when not using helm. Fix this
+- Currently, the normal dockerfile works, but the multi-stage only works when not using helm. Fix this
+- Docker run in debug

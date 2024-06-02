@@ -1,20 +1,53 @@
 import math
-from urllib import request
+import os
+import sqlite3
 
+import boto3
 from flask import request, Flask, jsonify
 
 app = Flask(__name__)
+
+# Configure S3
+s3 = boto3.client('s3', region_name='us-east-1')
+bucket_name = 'true-wind-bk'
+db_file_name = 'truewind.db'
+local_db_path = f'/tmp/{db_file_name}'
+
+
+def download_db_from_s3():
+    if not os.path.exists(local_db_path):
+        s3.download_file(bucket_name, db_file_name, local_db_path)
 
 
 @app.route('/')
 def home():
     return """<h1>Welcome to Wind API</h1>
 Enter a request in the form 
-&lt;address&gt;/wind/?wind_speed=10&wind_angle=45&boat_speed=5"""
+&lt;address&gt;/api/?wind_speed=10&wind_angle=45&boat_speed=5<br>
+<a href='/history/'>History</a>"""
 
 
-@app.route('/wind/')
-def wind():
+@app.route('/history/')
+def history():
+    # Download the database from S3
+    download_db_from_s3()
+
+    # Open the database connection
+    conn = sqlite3.connect(local_db_path)
+    cursor = conn.cursor()
+
+    # Example: Fetching some data from the database
+    cursor.execute("SELECT * FROM request_history")
+    db_result = cursor.fetchall()
+    conn.close()
+    html = '<h1>History</h1><br><strong>Request Time | Boat Speed | Wind Speed | Wind Angle</strong><br>'
+    for entry in db_result:
+        html += f'{entry}<br>'
+    return html
+
+
+@app.route('/api/')
+def api():
     # noinspection PyBroadException
     try:
         speed = float(request.args.get('wind_speed'))
@@ -24,7 +57,7 @@ def wind():
         return """
 <h1>GET request formatting error</h1>
 Enter a request in the form 
-&lt;address&gt;/wind/?wind_speed=10&wind_angle=45&boat_speed=5"""
+&lt;address&gt;/api/?wind_speed=10&wind_angle=45&boat_speed=5"""
 
     angle_rad = math.radians(angle)
     x = speed * math.cos(angle_rad)
@@ -39,4 +72,4 @@ Enter a request in the form
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+    app.run(debug=True)
