@@ -1,5 +1,7 @@
 replicaCount: 1
 
+debug: true
+
 image:
   repository: docker.io/fredsheppard/true_wind
   tag: stage
