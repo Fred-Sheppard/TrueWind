@@ -1,0 +1,22 @@
+replicaCount: 3
+
+debug: false
+
+image:
+  repository: 708726711781.dkr.ecr.us-east-1.amazonaws.com/flask-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+containerPort: 5000
+
+service:
+  type: LoadBalancer
+  port: 80
+
+resources:
+  limits:
+    cpu: 1
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
