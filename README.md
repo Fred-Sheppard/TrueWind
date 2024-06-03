@@ -6,7 +6,7 @@ A simple API to return true wind speed and angle.
 
 To use this API, perform a GET request in the following format:
 ```
-http://127.0.0.1:5000/wind/?wind_speed=<wind_speed>&wind_angle=<wind_angle>&boat_speed=<boat_speed>
+http://ab6a99ef966004288a77448dfd20b8ff-1464420605.us-east-1.elb.amazonaws.com/api/?wind_speed=10&wind_angle=45&boat_speed=5
 ```
 
 ### Parameters
@@ -36,5 +36,5 @@ The output of the GET request is formatted in JSON as follows:
 
 To host the image locally, run the following:
 ```bash
-docker run fredsheppard/true_wind
+docker run -p 5000:5000 fredsheppard/true_wind
 ```

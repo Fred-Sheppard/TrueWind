@@ -36,6 +36,7 @@ def history():
     cursor = conn.cursor()
 
     # Example: Fetching some data from the database
+    # noinspection SqlDialectInspection,SqlNoDataSourceInspection
     cursor.execute("SELECT * FROM request_history")
     db_result = cursor.fetchall()
     conn.close()
