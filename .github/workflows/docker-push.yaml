@@ -56,4 +56,4 @@ jobs:
       - name: Helm upgrade
         run: |
           IMAGE_TAG=${GITHUB_REF#refs/tags/}
-          helm upgrade prod helm -f helm/values-aws-production.yaml --set image.repository=${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }},image.tag=$IMAGE_TAG
+          helm upgrade dev helm -f helm/values-aws-development.yaml --set image.repository=${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }},image.tag=$IMAGE_TAG
