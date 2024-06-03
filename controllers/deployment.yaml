@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: 708726711781.dkr.ecr.us-east-1.amazonaws.com/flask-app:latest
+        image: "docker.io/fredsheppard/true_wind:latest"
         ports:
         - containerPort: 5000

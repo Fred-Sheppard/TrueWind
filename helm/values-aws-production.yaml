@@ -4,7 +4,7 @@ debug: false
 
 image:
   repository: 708726711781.dkr.ecr.us-east-1.amazonaws.com/flask-app
-  tag: latest
+  tag: v0.2.11
   pullPolicy: IfNotPresent
 
 containerPort: 5000
