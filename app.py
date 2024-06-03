@@ -23,8 +23,7 @@ def download_db_from_s3():
 def home():
     return """<h1>Welcome to Wind API</h1>
 Enter a request in the form 
-&lt;address&gt;/api/?wind_speed=10&wind_angle=45&boat_speed=6<br>
-<a href='/history/'>History</a>"""
+&lt;address&gt;/api/?wind_speed=10&wind_angle=45&boat_speed=6<br>"""
 
 
 @app.route('/history/')
